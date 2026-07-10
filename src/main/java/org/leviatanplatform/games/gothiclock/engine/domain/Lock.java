@@ -30,6 +30,11 @@ public class Lock {
     }
 
     public void movePosition(Integer layerIndex, boolean upOrDown) {
+
+        if (!isMovePositionPossible(layerIndex, upOrDown)) {
+            throw new RuntimeException("Not possible move in layer: " + layerIndex + " | upOrDown = " + upOrDown);
+        }
+
         LockLayer layer = this.listLayer.get(layerIndex);
         layer.movePosition(upOrDown);
     }
@@ -71,6 +76,4 @@ public class Lock {
         List<LockLayer> listLayer = this.listLayer.stream().map(LockLayer::buildClone).toList();
         return new Lock(listLayer);
     }
-
-    // FIXME evaluate dependencies in movement
 }
