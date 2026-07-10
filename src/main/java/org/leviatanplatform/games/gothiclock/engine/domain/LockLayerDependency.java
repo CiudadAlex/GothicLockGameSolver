@@ -2,16 +2,16 @@ package org.leviatanplatform.games.gothiclock.engine.domain;
 
 public class LockLayerDependency {
 
-    private final LockLayer lockLayer;
+    private final int layerIndexTarget;
     private final boolean movementEqualOrInverse;
 
-    public LockLayerDependency(LockLayer lockLayer, boolean movementEqualOrInverse) {
-        this.lockLayer = lockLayer;
+    public LockLayerDependency(int layerIndexTarget, boolean movementEqualOrInverse) {
+        this.layerIndexTarget = layerIndexTarget;
         this.movementEqualOrInverse = movementEqualOrInverse;
     }
 
-    public LockLayer getLockLayer() {
-        return lockLayer;
+    public int getLayerIndexTarget() {
+        return layerIndexTarget;
     }
 
     public boolean isMovementEqualOrInverse() {

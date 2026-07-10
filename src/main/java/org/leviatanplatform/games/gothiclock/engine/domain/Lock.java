@@ -20,9 +20,8 @@ public class Lock {
     public void addDependency(Integer layerIndexSource, Integer layerIndexTarget, boolean movementEqualOrInverse) {
 
         LockLayer layerSource = this.listLayer.get(layerIndexSource);
-        LockLayer layerTarget = this.listLayer.get(layerIndexTarget);
 
-        LockLayerDependency dependency = new LockLayerDependency(layerTarget, movementEqualOrInverse);
+        LockLayerDependency dependency = new LockLayerDependency(layerIndexTarget, movementEqualOrInverse);
         layerSource.getListLockLayerDependency().add(dependency);
     }
 
