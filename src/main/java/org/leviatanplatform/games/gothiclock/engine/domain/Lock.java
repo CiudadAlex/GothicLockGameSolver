@@ -46,4 +46,6 @@ public class Lock {
 
         return true;
     }
+
+    // FIXME evaluate dependencies in movement
 }
