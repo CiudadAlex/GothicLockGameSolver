@@ -21,6 +21,12 @@ public class LockLayer {
         this.position = newPosition;
     }
 
+    public boolean isMovePositionPossible(boolean upOrDown) {
+
+        int newPosition = upOrDown ? this.position + 1 : this.position - 1;
+        return checkIfPositionIsPossible(newPosition);
+    }
+
     private void throwIfPositionIsNotPossible(int newPosition) {
         if (checkIfPositionIsPossible(newPosition)) {
             throw new RuntimeException("Incorrect position: " + newPosition);
