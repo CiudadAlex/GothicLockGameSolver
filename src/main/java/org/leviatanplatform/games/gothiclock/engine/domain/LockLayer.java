@@ -10,13 +10,24 @@ public class LockLayer {
         this.positionToOpen = positionToOpen;
         this.numberOfPositions = numberOfPositions;
         this.position = position;
+
+        throwIfPositionIsNotPossible(position);
     }
 
     public void movePosition(boolean upOrDown) {
 
+        int newPosition = upOrDown ? this.position + 1 : this.position - 1;
+        throwIfPositionIsNotPossible(newPosition);
+        this.position = newPosition;
     }
 
-    private boolean checkIfFinalPositionIsPossible(int newPosition) {
+    private void throwIfPositionIsNotPossible(int newPosition) {
+        if (checkIfPositionIsPossible(newPosition)) {
+            throw new RuntimeException("Incorrect position: " + newPosition);
+        }
+    }
+
+    private boolean checkIfPositionIsPossible(int newPosition) {
         return newPosition >= 0 && newPosition < numberOfPositions;
     }
 }
