@@ -33,9 +33,12 @@ public class Lock {
         layerSource.getListLockLayerDependency().add(dependency);
     }
 
-    public void movePosition(Integer layerIndex, boolean upOrDown) {
+    public void movePosition(Movement movement) {
 
-        if (!isMovePositionPossible(layerIndex, upOrDown)) {
+        Integer layerIndex = movement.getLayerIndex();
+        boolean upOrDown = movement.isUpOrDown();
+
+        if (!isMovePositionPossible(movement)) {
             throw new RuntimeException("Not possible move in layer: " + layerIndex + " | upOrDown = " + upOrDown);
         }
 
@@ -43,7 +46,10 @@ public class Lock {
         layer.movePosition(upOrDown);
     }
 
-    public boolean isMovePositionPossible(Integer layerIndex, boolean upOrDown) {
+    public boolean isMovePositionPossible(Movement movement) {
+
+        Integer layerIndex = movement.getLayerIndex();
+        boolean upOrDown = movement.isUpOrDown();
 
         LockLayer layer = this.listLayer.get(layerIndex);
 

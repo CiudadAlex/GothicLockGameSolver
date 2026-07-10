@@ -13,7 +13,8 @@ public class LockOpener {
 
         for (int layerIndex = 0; layerIndex < numberOfLayers; layerIndex++) {
             Lock lockClone = lock.buildClone();
-            lockClone.isMovePositionPossible(layerIndex, true);
+            Movement movement = new Movement(layerIndex, true);
+            lockClone.isMovePositionPossible(movement);
         }
 
 
