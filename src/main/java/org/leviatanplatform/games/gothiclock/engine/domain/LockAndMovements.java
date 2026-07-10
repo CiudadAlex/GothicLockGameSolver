@@ -19,4 +19,8 @@ public class LockAndMovements {
     public List<Movement> getListMovements() {
         return listMovements;
     }
+
+    public boolean isOpen() {
+        return this.lock.isOpen();
+    }
 }

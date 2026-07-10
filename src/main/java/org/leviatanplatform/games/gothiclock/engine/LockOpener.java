@@ -13,14 +13,17 @@ public class LockOpener {
 
         int numberOfLayers = lock.getNumberOfLayers();
         List<Movement> allMovements = getAllPossibleMovements(numberOfLayers);
+        List<LockAndMovements> listLockAndMovements = List.of(new LockAndMovements(lock, List.of()));
 
-        for (Movement movement : allMovements) {
-            Lock lockClone = lock.buildClone();
-            lockClone.isMovePositionPossible(movement);
+        while (true) {
+            listLockAndMovements = iteration(listLockAndMovements, allMovements);
+
+            for (LockAndMovements lockAndMovements : listLockAndMovements) {
+                if (lockAndMovements.isOpen()) {
+                    return lockAndMovements.getListMovements();
+                }
+            }
         }
-
-        // FIXME finish
-        return null;
     }
 
     private static List<LockAndMovements> iteration(List<LockAndMovements> listLockAndMovements, List<Movement> allMovements) {
