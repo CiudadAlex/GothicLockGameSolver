@@ -8,7 +8,6 @@ public class LockLayer {
     private final int positionToOpen;
     private final int numberOfPositions;
     private final List<LockLayerDependency> listLockLayerDependency = new ArrayList<>();
-
     private int position;
 
     public LockLayer(int positionToOpen, int numberOfPositions, int position) {
@@ -44,5 +43,9 @@ public class LockLayer {
 
     public List<LockLayerDependency> getListLockLayerDependency() {
         return listLockLayerDependency;
+    }
+
+    public boolean isOpen() {
+        return positionToOpen == position;
     }
 }

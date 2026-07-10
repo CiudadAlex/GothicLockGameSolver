@@ -25,4 +25,25 @@ public class Lock {
         LockLayerDependency dependency = new LockLayerDependency(layerTarget, movementEqualOrInverse);
         layerSource.getListLockLayerDependency().add(dependency);
     }
+
+    public void movePosition(Integer layerIndex, boolean upOrDown) {
+        LockLayer layer = this.listLayer.get(layerIndex);
+        layer.movePosition(upOrDown);
+    }
+
+    public boolean isMovePositionPossible(Integer layerIndex, boolean upOrDown) {
+        LockLayer layer = this.listLayer.get(layerIndex);
+        return layer.isMovePositionPossible(upOrDown);
+    }
+
+    public boolean isOpen() {
+
+        for (LockLayer layer : listLayer) {
+            if (!layer.isOpen()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
