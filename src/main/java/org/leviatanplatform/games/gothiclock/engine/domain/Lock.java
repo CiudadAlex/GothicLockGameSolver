@@ -15,7 +15,14 @@ public class Lock {
             LockLayer layer = new LockLayer(positionToOpen, numberOfPositions, initialPosition);
             listLayer.add(layer);
         }
+    }
 
-        // FIXME add dependencies
+    public void addDependency(Integer layerIndexSource, Integer layerIndexTarget, boolean movementEqualOrInverse) {
+
+        LockLayer layerSource = this.listLayer.get(layerIndexSource);
+        LockLayer layerTarget = this.listLayer.get(layerIndexTarget);
+
+        LockLayerDependency dependency = new LockLayerDependency(layerTarget, movementEqualOrInverse);
+        layerSource.getListLockLayerDependency().add(dependency);
     }
 }
