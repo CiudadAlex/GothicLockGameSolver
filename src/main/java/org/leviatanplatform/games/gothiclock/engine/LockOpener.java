@@ -23,6 +23,8 @@ public class LockOpener {
                     return lockAndMovements.getListMovements();
                 }
             }
+
+            System.out.println("listLockAndMovements size = " + listLockAndMovements.size());
         }
     }
 
