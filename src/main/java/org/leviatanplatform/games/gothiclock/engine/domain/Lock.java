@@ -17,6 +17,10 @@ public class Lock {
         }
     }
 
+    public Lock(List<LockLayer> listLayer) {
+        this.listLayer = listLayer;
+    }
+
     public void addDependency(Integer layerIndexSource, Integer layerIndexTarget, boolean movementEqualOrInverse) {
 
         LockLayer layerSource = this.listLayer.get(layerIndexSource);
@@ -44,6 +48,11 @@ public class Lock {
         }
 
         return true;
+    }
+
+    public Lock buildClone() {
+        List<LockLayer> listLayer = this.listLayer.stream().map(LockLayer::buildClone).toList();
+        return new Lock(listLayer);
     }
 
     // FIXME evaluate dependencies in movement

@@ -48,4 +48,10 @@ public class LockLayer {
     public boolean isOpen() {
         return positionToOpen == position;
     }
+
+    public LockLayer buildClone() {
+        LockLayer clone = new LockLayer(positionToOpen, numberOfPositions, position);
+        clone.getListLockLayerDependency().addAll(listLockLayerDependency);
+        return clone;
+    }
 }
