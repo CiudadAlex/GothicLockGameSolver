@@ -21,6 +21,10 @@ public class Lock {
         this.listLayer = listLayer;
     }
 
+    public int getNumberOfLayers() {
+        return listLayer.size();
+    }
+
     public void addDependency(Integer layerIndexSource, Integer layerIndexTarget, boolean movementEqualOrInverse) {
 
         LockLayer layerSource = this.listLayer.get(layerIndexSource);
