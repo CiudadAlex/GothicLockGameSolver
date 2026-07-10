@@ -1,6 +1,7 @@
 package org.leviatanplatform.games.gothiclock.engine;
 
 import org.leviatanplatform.games.gothiclock.engine.domain.Lock;
+import org.leviatanplatform.games.gothiclock.engine.domain.LockAndMovements;
 import org.leviatanplatform.games.gothiclock.engine.domain.Movement;
 
 import java.util.ArrayList;
@@ -13,15 +14,51 @@ public class LockOpener {
         int numberOfLayers = lock.getNumberOfLayers();
         List<Movement> allMovements = getAllPossibleMovements(numberOfLayers);
 
-        for (int layerIndex = 0; layerIndex < numberOfLayers; layerIndex++) {
+        for (Movement movement : allMovements) {
             Lock lockClone = lock.buildClone();
-            Movement movement = new Movement(layerIndex, true);
             lockClone.isMovePositionPossible(movement);
         }
 
-
         // FIXME finish
         return null;
+    }
+
+    private static List<LockAndMovements> iteration(List<LockAndMovements> listLockAndMovements, List<Movement> allMovements) {
+
+        List<LockAndMovements> listLockAndMovementsNextIteration = new ArrayList<>();
+
+        for (LockAndMovements lockAndMovements : listLockAndMovements) {
+            List<LockAndMovements> list = iteration(lockAndMovements, allMovements);
+            listLockAndMovementsNextIteration.addAll(list);
+        }
+
+        return listLockAndMovementsNextIteration;
+    }
+
+    private static List<LockAndMovements> iteration(LockAndMovements lockAndMovements, List<Movement> allMovements) {
+
+        List<LockAndMovements> listLockAndMovements = new ArrayList<>();
+        Lock lock = lockAndMovements.getLock();
+        List<Movement> listPreviousMovements = lockAndMovements.getListMovements();
+
+        for (Movement movement : allMovements) {
+
+            if (lock.isMovePositionPossible(movement)) {
+                LockAndMovements newLockAndMovements = getLockAndMovements(lock, listPreviousMovements, movement);
+                listLockAndMovements.add(newLockAndMovements);
+            }
+        }
+
+        return listLockAndMovements;
+    }
+
+    private static LockAndMovements getLockAndMovements(Lock lock, List<Movement> listPreviousMovements, Movement movement) {
+
+        Lock lockClone = lock.buildClone();
+        lockClone.movePosition(movement);
+        List<Movement> listMovements = new ArrayList<>(listPreviousMovements);
+        listMovements.add(movement);
+        return new LockAndMovements(lockClone, listMovements);
     }
 
     private static List<Movement> getAllPossibleMovements(int numberOfLayers) {
