@@ -1,10 +1,13 @@
 package org.leviatanplatform.games.gothiclock.engine.domain;
 
+import java.util.List;
+
 public class LockLayer {
 
     private final int positionToOpen;
     private final int numberOfPositions;
     private int position;
+    private List<LockLayerDependency> listLockLayerDependency;
 
     public LockLayer(int positionToOpen, int numberOfPositions, int position) {
         this.positionToOpen = positionToOpen;
@@ -35,5 +38,13 @@ public class LockLayer {
 
     private boolean checkIfPositionIsPossible(int newPosition) {
         return newPosition >= 0 && newPosition < numberOfPositions;
+    }
+
+    public List<LockLayerDependency> getListLockLayerDependency() {
+        return listLockLayerDependency;
+    }
+
+    public void setListLockLayerDependency(List<LockLayerDependency> listLockLayerDependency) {
+        this.listLockLayerDependency = listLockLayerDependency;
     }
 }
