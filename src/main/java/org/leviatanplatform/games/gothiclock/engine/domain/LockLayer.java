@@ -32,7 +32,7 @@ public class LockLayer {
     }
 
     private void throwIfPositionIsNotPossible(int newPosition) {
-        if (checkIfPositionIsPossible(newPosition)) {
+        if (!checkIfPositionIsPossible(newPosition)) {
             throw new RuntimeException("Incorrect position: " + newPosition);
         }
     }
