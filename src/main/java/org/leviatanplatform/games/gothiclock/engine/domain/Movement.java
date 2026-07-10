@@ -17,4 +17,8 @@ public class Movement {
     public boolean isUpOrDown() {
         return upOrDown;
     }
+
+    public String toString() {
+        return "layerIndex = " + layerIndex + " | upOrDown = " + upOrDown;
+    }
 }
