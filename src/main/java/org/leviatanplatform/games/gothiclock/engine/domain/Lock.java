@@ -35,8 +35,25 @@ public class Lock {
     }
 
     public boolean isMovePositionPossible(Integer layerIndex, boolean upOrDown) {
+
         LockLayer layer = this.listLayer.get(layerIndex);
-        return layer.isMovePositionPossible(upOrDown);
+
+        if (!layer.isMovePositionPossible(upOrDown)) {
+            return false;
+        }
+
+        for (LockLayerDependency dependency : layer.getListLockLayerDependency()) {
+            int layerIndexTarget = dependency.getLayerIndexTarget();
+            boolean movementEqualOrInverse = dependency.isMovementEqualOrInverse();
+
+            LockLayer layerTarget = this.listLayer.get(layerIndexTarget);
+
+            if (!layerTarget.isMovePositionPossible(upOrDown ^ !movementEqualOrInverse)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean isOpen() {
