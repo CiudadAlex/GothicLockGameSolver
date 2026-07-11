@@ -30,7 +30,7 @@ public class LockOpener {
 
     private static void printReportOfIteration(int numberOfLayers, List<LockAndMovements> listLockAndMovements) {
 
-        int[] arrayNumberOfOpenLayers = new int[numberOfLayers];
+        int[] arrayNumberOfOpenLayers = new int[numberOfLayers + 1];
 
         for (LockAndMovements lockAndMovements : listLockAndMovements) {
             int numberLayersOpen = lockAndMovements.getLock().getNumberOfLayersOpen();
@@ -41,7 +41,7 @@ public class LockOpener {
 
         for (int i = 0; i < arrayNumberOfOpenLayers.length; i++) {
             int num = arrayNumberOfOpenLayers[i];
-            sb.append("(" + i + ": " + num + ") ");
+            sb.append("(").append(i).append(": ").append(num).append(") ");
         }
 
         System.out.println("listLockAndMovements size = " + listLockAndMovements.size() + " | OpenLayers = " + sb.toString());
