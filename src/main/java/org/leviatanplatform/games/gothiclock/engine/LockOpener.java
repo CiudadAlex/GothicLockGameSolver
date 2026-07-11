@@ -33,7 +33,7 @@ public class LockOpener {
 
     private static List<LockAndMovements> purgeLeastAdvanced(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
         int maxIndexNonZero = getMaxIndexNonZero(arrayNumberOfOpenLayers);
-        int minAllowedOpened = maxIndexNonZero - 3;
+        int minAllowedOpened = maxIndexNonZero - 1;
         return listLockAndMovements.stream().filter(lm -> lm.getLock().getNumberOfLayersOpen() >= minAllowedOpened).toList();
     }
 
