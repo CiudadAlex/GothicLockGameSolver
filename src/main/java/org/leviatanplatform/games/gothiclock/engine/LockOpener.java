@@ -5,7 +5,9 @@ import org.leviatanplatform.games.gothiclock.engine.domain.LockAndMovements;
 import org.leviatanplatform.games.gothiclock.engine.domain.Movement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LockOpener {
 
@@ -24,11 +26,30 @@ public class LockOpener {
                 }
             }
 
+            listLockAndMovements = purgeRepeated(listLockAndMovements);
+
             int[] arrayNumberOfOpenLayers = buildArrayNumberOfOpenLayers(numberOfLayers, listLockAndMovements);
             printReportOfIteration(arrayNumberOfOpenLayers, listLockAndMovements);
 
             listLockAndMovements = purgeLeastAdvanced(arrayNumberOfOpenLayers, listLockAndMovements);
         }
+    }
+
+    private static List<LockAndMovements> purgeRepeated(List<LockAndMovements> listLockAndMovements) {
+
+        List<LockAndMovements> listLockAndMovementsFiltered = new ArrayList<>();
+        Set<String> setLockPrints = new HashSet<>();
+
+        for (LockAndMovements lockAndMovements : listLockAndMovements) {
+
+            boolean added = setLockPrints.add(lockAndMovements.toString());
+
+            if (added) {
+                listLockAndMovementsFiltered.add(lockAndMovements);
+            }
+        }
+
+        return listLockAndMovementsFiltered;
     }
 
     private static List<LockAndMovements> purgeLeastAdvanced(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
