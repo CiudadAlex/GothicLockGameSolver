@@ -73,13 +73,26 @@ public class Lock {
 
     public boolean isOpen() {
 
-        for (LockLayer layer : listLayer) {
+        for (LockLayer layer : this.listLayer) {
             if (!layer.isOpen()) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    public int getNumberOfLayersOpen() {
+
+        int numberOpen = 0;
+
+        for (LockLayer layer : this.listLayer) {
+            if (layer.isOpen()) {
+                numberOpen++;
+            }
+        }
+
+        return numberOpen;
     }
 
     public Lock buildClone() {

@@ -24,8 +24,20 @@ public class LockOpener {
                 }
             }
 
-            System.out.println("listLockAndMovements size = " + listLockAndMovements.size());
+            printReportOfIteration(numberOfLayers, listLockAndMovements);
         }
+    }
+
+    private static void printReportOfIteration(int numberOfLayers, List<LockAndMovements> listLockAndMovements) {
+
+        int[] arrayNumberOfOpenLayers = new int[numberOfLayers];
+
+        for (LockAndMovements lockAndMovements : listLockAndMovements) {
+            int numberLayersOpen = lockAndMovements.getLock().getNumberOfLayersOpen();
+            arrayNumberOfOpenLayers[numberLayersOpen]++;
+        }
+
+        System.out.println("listLockAndMovements size = " + listLockAndMovements.size() + " | arrayNumberOfOpenLayers = " + arrayNumberOfOpenLayers);
     }
 
     private static List<LockAndMovements> iteration(List<LockAndMovements> listLockAndMovements, List<Movement> allMovements) {
