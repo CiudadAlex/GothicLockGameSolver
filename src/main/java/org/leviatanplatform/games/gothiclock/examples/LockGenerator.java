@@ -14,11 +14,16 @@ public class LockGenerator {
 
         Lock lock = new Lock(positionToOpen, numberOfPositions, listInitialPositions);
 
+        lock.addDependency(1, 2, true);
+        lock.addDependency(1, 4, false);
+
         lock.addDependency(2, 3, true);
         lock.addDependency(2, 5, false);
 
-        lock.addDependency(1, 2, true);
-        lock.addDependency(1, 4, false);
+        lock.addDependency(3, 1, false);
+        lock.addDependency(3, 4, false);
+
+        lock.addDependency(5, 3, true);
 
         return lock;
     }
