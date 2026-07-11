@@ -44,6 +44,25 @@ public class Lock {
 
         LockLayer layer = this.listLayer.get(layerIndex);
         layer.movePosition(upOrDown);
+
+        for (LockLayerDependency dependency : layer.getListLockLayerDependency()) {
+            boolean upOrDownDependency = getUpOrDownOfDependency(upOrDown, dependency);
+            LockLayer layerTarget = getLayerOfDependency(dependency);
+
+            layerTarget.movePosition(upOrDownDependency);
+        }
+    }
+
+    private boolean getUpOrDownOfDependency(boolean upOrDown, LockLayerDependency dependency) {
+
+        boolean movementEqualOrInverse = dependency.isMovementEqualOrInverse();
+        return upOrDown ^ !movementEqualOrInverse;
+    }
+
+    private LockLayer getLayerOfDependency(LockLayerDependency dependency) {
+
+        int layerIndexTarget = dependency.getLayerIndexTarget();
+        return this.listLayer.get(layerIndexTarget);
     }
 
     public boolean isMovePositionPossible(Movement movement) {
@@ -58,12 +77,10 @@ public class Lock {
         }
 
         for (LockLayerDependency dependency : layer.getListLockLayerDependency()) {
-            int layerIndexTarget = dependency.getLayerIndexTarget();
-            boolean movementEqualOrInverse = dependency.isMovementEqualOrInverse();
+            boolean upOrDownDependency = getUpOrDownOfDependency(upOrDown, dependency);
+            LockLayer layerTarget = getLayerOfDependency(dependency);
 
-            LockLayer layerTarget = this.listLayer.get(layerIndexTarget);
-
-            if (!layerTarget.isMovePositionPossible(upOrDown ^ !movementEqualOrInverse)) {
+            if (!layerTarget.isMovePositionPossible(upOrDownDependency)) {
                 return false;
             }
         }
