@@ -116,4 +116,17 @@ public class Lock {
         List<LockLayer> listLayer = this.listLayer.stream().map(LockLayer::buildClone).toList();
         return new Lock(listLayer);
     }
+
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (LockLayer layer : this.listLayer) {
+
+            sb.append(layer.getPosition());
+            sb.append(",");
+        }
+
+        return sb.toString();
+    }
 }

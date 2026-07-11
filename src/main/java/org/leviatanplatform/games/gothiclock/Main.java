@@ -22,4 +22,6 @@ public class Main {
 
         System.out.println("=======================================");
     }
+
+    // FIXME eliminar locks iguales
 }

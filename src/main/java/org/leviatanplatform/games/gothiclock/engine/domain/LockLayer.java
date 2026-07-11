@@ -54,4 +54,8 @@ public class LockLayer {
         clone.getListLockLayerDependency().addAll(listLockLayerDependency);
         return clone;
     }
+
+    public int getPosition() {
+        return position;
+    }
 }
