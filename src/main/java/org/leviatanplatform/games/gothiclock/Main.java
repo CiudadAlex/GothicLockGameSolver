@@ -21,7 +21,13 @@ public class Main {
         }
 
         System.out.println("=======================================");
-    }
 
-    // FIXME eliminar locks iguales
+        Lock lockCloned = lock.buildClone();
+        System.out.println(lockCloned);
+
+        for (Movement movement : listMovements) {
+            lockCloned.movePosition(movement);
+            System.out.println(lockCloned);
+        }
+    }
 }
