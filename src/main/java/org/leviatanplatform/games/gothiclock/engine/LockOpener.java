@@ -26,7 +26,26 @@ public class LockOpener {
 
             int[] arrayNumberOfOpenLayers = buildArrayNumberOfOpenLayers(numberOfLayers, listLockAndMovements);
             printReportOfIteration(arrayNumberOfOpenLayers, listLockAndMovements);
+
+            listLockAndMovements = purgeLeastAdvanced(arrayNumberOfOpenLayers, listLockAndMovements);
         }
+    }
+
+    private static List<LockAndMovements> purgeLeastAdvanced(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
+        int maxIndexNonZero = getMaxIndexNonZero(arrayNumberOfOpenLayers);
+        int minAllowedOpened = maxIndexNonZero - 3;
+        return listLockAndMovements.stream().filter(lm -> lm.getLock().getNumberOfLayersOpen() >= minAllowedOpened).toList();
+    }
+
+    private static int getMaxIndexNonZero(int[] arrayNumberOfOpenLayers) {
+
+        for (int i = arrayNumberOfOpenLayers.length - 1; i <= 0; i--) {
+            if (arrayNumberOfOpenLayers[i] != 0) {
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     private static void printReportOfIteration(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
