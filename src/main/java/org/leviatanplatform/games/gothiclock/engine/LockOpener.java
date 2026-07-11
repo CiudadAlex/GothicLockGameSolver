@@ -42,7 +42,7 @@ public class LockOpener {
 
         for (LockAndMovements lockAndMovements : listLockAndMovements) {
 
-            boolean added = setLockPrints.add(lockAndMovements.toString());
+            boolean added = setLockPrints.add(lockAndMovements.getLock().toString());
 
             if (added) {
                 listLockAndMovementsFiltered.add(lockAndMovements);
@@ -54,7 +54,7 @@ public class LockOpener {
 
     private static List<LockAndMovements> purgeLeastAdvanced(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
         int maxIndexNonZero = getMaxIndexNonZero(arrayNumberOfOpenLayers);
-        int minAllowedOpened = maxIndexNonZero - 1;
+        int minAllowedOpened = maxIndexNonZero - 3;
         return listLockAndMovements.stream().filter(lm -> lm.getLock().getNumberOfLayersOpen() >= minAllowedOpened).toList();
     }
 
