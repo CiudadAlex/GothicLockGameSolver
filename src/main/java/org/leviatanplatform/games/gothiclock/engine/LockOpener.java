@@ -39,7 +39,7 @@ public class LockOpener {
 
     private static int getMaxIndexNonZero(int[] arrayNumberOfOpenLayers) {
 
-        for (int i = arrayNumberOfOpenLayers.length - 1; i <= 0; i--) {
+        for (int i = arrayNumberOfOpenLayers.length - 1; i >= 0; i--) {
             if (arrayNumberOfOpenLayers[i] != 0) {
                 return i;
             }
