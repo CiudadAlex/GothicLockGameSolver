@@ -24,18 +24,12 @@ public class LockOpener {
                 }
             }
 
-            printReportOfIteration(numberOfLayers, listLockAndMovements);
+            int[] arrayNumberOfOpenLayers = buildArrayNumberOfOpenLayers(numberOfLayers, listLockAndMovements);
+            printReportOfIteration(arrayNumberOfOpenLayers, listLockAndMovements);
         }
     }
 
-    private static void printReportOfIteration(int numberOfLayers, List<LockAndMovements> listLockAndMovements) {
-
-        int[] arrayNumberOfOpenLayers = new int[numberOfLayers + 1];
-
-        for (LockAndMovements lockAndMovements : listLockAndMovements) {
-            int numberLayersOpen = lockAndMovements.getLock().getNumberOfLayersOpen();
-            arrayNumberOfOpenLayers[numberLayersOpen]++;
-        }
+    private static void printReportOfIteration(int[] arrayNumberOfOpenLayers, List<LockAndMovements> listLockAndMovements) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -45,6 +39,17 @@ public class LockOpener {
         }
 
         System.out.println("listLockAndMovements size = " + listLockAndMovements.size() + " | OpenLayers = " + sb.toString());
+    }
+
+    private static int[] buildArrayNumberOfOpenLayers(int numberOfLayers, List<LockAndMovements> listLockAndMovements) {
+
+        int[] arrayNumberOfOpenLayers = new int[numberOfLayers + 1];
+
+        for (LockAndMovements lockAndMovements : listLockAndMovements) {
+            int numberLayersOpen = lockAndMovements.getLock().getNumberOfLayersOpen();
+            arrayNumberOfOpenLayers[numberLayersOpen]++;
+        }
+        return arrayNumberOfOpenLayers;
     }
 
     private static List<LockAndMovements> iteration(List<LockAndMovements> listLockAndMovements, List<Movement> allMovements) {
