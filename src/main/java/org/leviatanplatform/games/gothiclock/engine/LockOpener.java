@@ -37,7 +37,14 @@ public class LockOpener {
             arrayNumberOfOpenLayers[numberLayersOpen]++;
         }
 
-        System.out.println("listLockAndMovements size = " + listLockAndMovements.size() + " | arrayNumberOfOpenLayers = " + arrayNumberOfOpenLayers);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < arrayNumberOfOpenLayers.length; i++) {
+            int num = arrayNumberOfOpenLayers[i];
+            sb.append("(" + i + ": " + num + ") ");
+        }
+
+        System.out.println("listLockAndMovements size = " + listLockAndMovements.size() + " | OpenLayers = " + sb.toString());
     }
 
     private static List<LockAndMovements> iteration(List<LockAndMovements> listLockAndMovements, List<Movement> allMovements) {
