@@ -42,7 +42,6 @@ public class LockGenerator {
         lock.addDependency(3, 2, true);
 
         lock.addDependency(2, 1, true);
-        lock.addDependency(2, 2, true);
         lock.addDependency(2, 3, true);
 
         return lock;
