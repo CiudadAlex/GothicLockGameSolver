@@ -27,4 +27,24 @@ public class LockGenerator {
 
         return lock;
     }
+
+    public static Lock generateEasyLock() {
+
+        int positionToOpen = 3;
+        int numberOfPositions = 7;
+        List<Integer> listInitialPositions = List.of(6, 6, 4, 1);
+
+        Lock lock = new Lock(positionToOpen, numberOfPositions, listInitialPositions);
+
+        lock.addDependency(1, 3, true);
+
+        lock.addDependency(3, 0, true);
+        lock.addDependency(3, 2, true);
+
+        lock.addDependency(2, 1, true);
+        lock.addDependency(2, 2, true);
+        lock.addDependency(2, 3, true);
+
+        return lock;
+    }
 }

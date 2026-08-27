@@ -11,7 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Lock lock = LockGenerator.generateDifficultLock();
+        Lock lockDifficult = LockGenerator.generateDifficultLock();
+        Lock lockEasy = LockGenerator.generateEasyLock();
+        solve(lockDifficult);
+    }
+
+    private static void solve(Lock lock) {
+
         List<Movement> listMovements = LockOpener.open(lock);
 
         System.out.println("=======================================");
